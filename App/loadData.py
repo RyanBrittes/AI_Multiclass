@@ -5,7 +5,7 @@ from normalizeData import NormalizeData
 class LoadData():
     def __init__(self):
         self.normalize = NormalizeData()
-        self.__data = pd.read_csv('files/sample.txt')
+        self.__data = pd.read_csv('files/diabetes.csv')
         self.__y_true = self.__data[['Outcome']].values
         self.__x_true = self.__data[['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']].values
 
@@ -37,6 +37,7 @@ class LoadData():
         rate_train = 1 - rate_test - rate_validation
 
         len_sample = len(y_values)
+        n_classes = len(np.unique(y_values))
         len_train = np.floor(len_sample * rate_train).astype(int)
         len_validation = np.round(len_sample * rate_validation).astype(int)
 
@@ -47,5 +48,5 @@ class LoadData():
         x_test = x_shuffled[(len_train + len_validation):len_sample]
         y_test = y_shuffled[(len_train + len_validation):len_sample]
         
-        return [x_train, y_train, x_validation, y_validation, x_test, y_test, len_sample]
+        return [x_train, y_train, x_validation, y_validation, x_test, y_test, len_sample, n_classes]
     
