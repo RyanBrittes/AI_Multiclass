@@ -1,7 +1,7 @@
 from sigmoid import Sigmoid
 from logLoss import LogLoss
 from loadData import LoadData
-from unitGradientDescent import UnitGradientDescent
+from gradientDescent import GradientDescent
 import numpy as np
 
 class MulticlassClassification():
@@ -9,7 +9,7 @@ class MulticlassClassification():
         self.sigmoid = Sigmoid()
         self.loss = LogLoss()
         self.data = LoadData()
-        self.gradient = UnitGradientDescent()
+        self.gradient = GradientDescent()
         self.rate_test = 0.2
         self.rate_validation = 0
         self.shuffled_data = self.data.get_shuffle_separe_train_validation_test(self.rate_test, self.rate_validation)
@@ -38,4 +38,4 @@ class MulticlassClassification():
             weights = self.gradient.calc_gradient(self.x_train, y_compair, weights, self.lr, self.epochs)
             all_weights[i] = weights
         
-        return [all_weights, self.x_test]
+        return [all_weights, self.x_test, self.y_test]

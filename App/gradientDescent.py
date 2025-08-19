@@ -1,7 +1,7 @@
 import numpy as np
 from sigmoid import Sigmoid
 
-class UnitGradientDescent():
+class GradientDescent():
     def __init__(self):
         self.sigmoid = Sigmoid()
 
@@ -9,9 +9,11 @@ class UnitGradientDescent():
         n_sample = len(y_train)
 
         for i in range(epochs):
-            y_pred = self.sigmoid.calc_sigmoid(np.dot(x_train, weights))
+            z_value = np.array(x_train @ weights).reshape(-1, 1)
+            y_pred = self.sigmoid.calc_sigmoid(z_value)
+            simple_loss = (y_pred - y_train)
 
-            dw = np.dot(x_train.T, (y_pred - y_train)) / n_sample
+            dw = np.array((x_train.T @ simple_loss) / n_sample).flatten()
 
             weights -= lr * dw
 
