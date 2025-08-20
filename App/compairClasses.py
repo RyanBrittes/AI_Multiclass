@@ -17,3 +17,4 @@ class CompairClasses():
         y_pred = self.sigmoid.calc_sigmoid(np.dot(x_test, weights.T))
 
         return [np.argmax(y_pred, axis=1), y_test, weights]
+    

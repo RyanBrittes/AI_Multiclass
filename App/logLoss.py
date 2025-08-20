@@ -7,3 +7,4 @@ class LogLoss():
     
     def calc_simple_loss(self, y_pred, y_true):
         return y_pred - y_true
+    

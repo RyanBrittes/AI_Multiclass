@@ -22,7 +22,7 @@ class MulticlassClassification():
         self.len_sample = self.shuffled_data[6]
         self.n_classes = self.shuffled_data[7]
         self.weights = np.zeros(self.shuffled_data[0].shape[1])
-        self.lr = 0.0001
+        self.lr = 0.001
         self.epochs = 8000
         self.losses = []
         self.batch_size = 50
